@@ -20,16 +20,21 @@ kubectl apply \
 -f k8s/auth-app.yaml
 ```
 
+Ensure that services are running
+```bash
+watch kubectl get po -n default
+```
+
 ### Setup ambassador:
 Obtain a new licence https://www.getambassador.io/aes-community-license-renewal/
 ```bash
-helm install -n ambassador --set licenseKey.value=<put a licence key here> \
+helm install -n ambassador --set licenseKey.value=eyJhbGciOiJQUzUxMiIsInR5cCI6IkpXVCJ9.eyJsaWNlbnNlX2tleV92ZXJzaW9uIjoidjIiLCJjdXN0b21lcl9pZCI6ImplZG93YXQ3MDlAdmViMzQuY29tLTE2NDE3NDM0ODUiLCJjdXN0b21lcl9lbWFpbCI6ImplZG93YXQ3MDlAdmViMzQuY29tIiwiZW5hYmxlZF9mZWF0dXJlcyI6WyIiLCJmaWx0ZXIiLCJyYXRlbGltaXQiLCJ0cmFmZmljIiwiZGV2cG9ydGFsIl0sImVuZm9yY2VkX2xpbWl0cyI6W3sibCI6ImRldnBvcnRhbC1zZXJ2aWNlcyIsInYiOjV9LHsibCI6InJhdGVsaW1pdC1zZXJ2aWNlIiwidiI6NX0seyJsIjoiYXV0aGZpbHRlci1zZXJ2aWNlIiwidiI6NX0seyJsIjoidHJhZmZpYy11c2VycyIsInYiOjV9XSwibWV0YWRhdGEiOnt9LCJleHAiOjE2NzMyNzk0ODUsImlhdCI6MTY0MTc0MzQ4NSwibmJmIjoxNjQxNzQzNDg1fQ.BhQi32pQiNR9KWO8iPblts39iU2asq7x7yrWHpIV4_n7wdpVrDHTjAmRRowu_FDGXMkCrUVfDJuNheMrmHjMoA1avCKYlL9E-xv1oQwrg6kFuTaS3xHL6rP9VEX7aawobtoybOpXZiorr0W3W6hvER1yihwbxjCW1dcpYjD1lZ9I-5qd9na1fWrKD1L37Oxm5kTixPKF7usbAfxpZN-cqVRPIpivHsqsPbsh-AB44hPWDKnnh3qZwUQ39Y0lw3z1R7cWrqet4G_yYcIU-KQZFQVXRMlL9FCCwgS9g_xHe8Xx65k3xxXIjKt-RKwZuRc7q6S-ACeWPNwcfdvW0vVH4w \
 -f k8s/ambassador.yaml ambassador datawire/ambassador
 ```
 
 Ensure that ambassador is up
 ```bash
-kubectl get po -n ambassador
+watch kubectl get po -n ambassador
 ```
 
 ### Setup routes and auth rules
