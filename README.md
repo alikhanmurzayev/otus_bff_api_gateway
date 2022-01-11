@@ -5,7 +5,7 @@
 git clone https://github.com/alikhanmurzayev/otus_bff_api_gateway.git && cd otus_bff_api_gateway
 ```
 
-### start minikube
+### Start minikube
 ```bash
 minikube start --cpus=4 --memory=4g --vm-driver=virtualbox
 ```
