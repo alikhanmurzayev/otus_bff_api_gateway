@@ -2,7 +2,6 @@
 
 ## Auth flow
 ![Auth flow](./auth.svg)
-<img src="./auth.svg">
 
 ### Clone the repo:
 ```bash
