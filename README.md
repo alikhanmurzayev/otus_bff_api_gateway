@@ -1,5 +1,9 @@
 # HW BFF. Api Gateway
 
+## Auth flow
+![Auth flow](./auth.svg)
+<img src="./auth.svg">
+
 ### Clone the repo:
 ```bash
 git clone https://github.com/alikhanmurzayev/otus_bff_api_gateway.git && cd otus_bff_api_gateway
