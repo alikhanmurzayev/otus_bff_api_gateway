@@ -28,11 +28,21 @@ Ensure that services are running
 watch kubectl get po -n default
 ```
 
-### Setup ambassador:
-Obtain a new licence https://www.getambassador.io/aes-community-license-renewal/
+## Setup ambassador:
+
+### Install the Ambassador Edge Stack CRDs
 ```bash
-helm install -n ambassador --set licenseKey.value=<enter licence key here> \
--f k8s/ambassador.yaml ambassador datawire/ambassador
+helm repo add datawire https://app.getambassador.io && \
+  helm repo update && \
+  kubectl apply -f https://app.getambassador.io/yaml/edge-stack/2.2.2/aes-crds.yaml && \
+  kubectl wait --for=condition=available deployment emissary-apiext -n emissary-system
+```
+
+### Install the Ambassador Edge Stack Chart
+```bash
+helm install -n ambassador --create-namespace -f k8s/ambassador.yaml \
+  edge-stack datawire/edge-stack && \
+  kubectl rollout status  -n ambassador deployment/edge-stack -w
 ```
 
 Ensure that ambassador is up
@@ -42,7 +52,7 @@ watch kubectl get po -n ambassador
 
 ### Setup routes and auth rules
 ```bash
-kubectl apply -f k8s/ambassador-routes.yaml -f k8s/ambassador-auth.yaml
+kubectl apply -f k8s/ambassador-routes.yaml -f k8s/ambassador-auth.yaml -f k8s/ambassador-listener.yaml
 ```
 
 ### Run test:

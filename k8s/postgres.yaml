@@ -71,6 +71,24 @@ spec:
     metadata:
       name: user
     spec:
+      initContainers:
+        - name: wait-for-postgres
+          image: postgres:latest
+          env:
+            - name: POSTGRES_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: config
+                  key: DB_HOST
+            - name: POSTGRES_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: config
+                  key: DB_PORT
+          command:
+            - sh
+            - -c
+            - until pg_isready --host=$POSTGRES_HOST --port=$POSTGRES_PORT; do sleep 1; done
       containers:
         - name: postgres-install-job
           image: postgres:latest
