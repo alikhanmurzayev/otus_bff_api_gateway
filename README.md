@@ -35,7 +35,7 @@ watch kubectl get po -n default
 helm repo add datawire https://app.getambassador.io && \
   helm repo update && \
   kubectl apply -f https://app.getambassador.io/yaml/edge-stack/2.2.2/aes-crds.yaml && \
-  kubectl wait --for=condition=available deployment emissary-apiext -n emissary-system
+  kubectl wait --timeout=5m --for=condition=available deployment emissary-apiext -n emissary-system
 ```
 
 ### Install the Ambassador Edge Stack Chart
